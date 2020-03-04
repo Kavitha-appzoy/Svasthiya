@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {View,Text,NativeModules,Button} from 'react-native';
+import {View,Text,NativeModules,Button,Platform} from 'react-native';
 
 function HomeScreen(){
     return(
@@ -8,7 +8,7 @@ function HomeScreen(){
         <Button
          title="X-Ray"
          onPress={() => {
-                 NativeModules.AppDelegate.pushVC('DICOMViewController')
+            Platform.OS === 'ios' ? NativeModules.AppDelegate.pushVC('DICOMViewController') : NativeModules.NativeModuleActivity.navigateToNativeModules()
   
          }}>
            
@@ -17,7 +17,7 @@ function HomeScreen(){
           <Button 
          title="MRI"
          onPress={() => {
-                NativeModules.AppDelegate.pushVC('MultipleDICOMViewController')
+            Platform.OS === 'ios' ?  NativeModules.AppDelegate.pushVC('MultipleDICOMViewController') : NativeModules.NativeModuleActivity.navigateToNativeModules()
   
    }}>
            
